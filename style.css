@@ -1,5 +1,441 @@
-.h { 
-    color: #00ffff;
-    background-color: #f0ffff;
-    padding:20px;
+@import 'https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.3.2/css/simple-line-icons.min.css';
+@import 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css';
+html,body{
+  height: 100%;
+  background: white;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: 1.7; 
+}
+.header
+{
+    display: flex;
+    height: 70px;
+    text-align: center;
+    padding-top: 10px;
+}
+.top-row{
+  display: flex;
+  align-items:flex-start;
+  background: white;
+  height: 100%;
+}
+.row{
+    display: flex;
+    align-items:start;
+}
+.row1{
+    display: flex;
+    margin-left: 10px;
+    font-size: 14px;
+
+}
+.plus-button {
+    background-color: #de2157;
+    border: none;
+    margin-left: 10px;
+    border-radius: 15px;
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .plus-symbol {
+    color: white;
+    font-size: 40px;
+  }
+
+  .title{
+    padding-left: 10px;
+    font-weight: bold;
+    font-style: normal; 
+    color: #000;
+    padding-top: 5px;
+  }
+  
+  
+.search-wrapper{
+    margin-left: 18px;
+    display: flex;
+    border: none;
+    border-radius: 15px;
+    background: #cecccc;
+    overflow: hidden;
+    width: 350px;
+    height: 40px;
+    /* box-shadow: 2px 1px 5px 1px rgba(0, 0, 0, 0.273); */
+}
+#search{
+    border:none;
+    width:350px;
+    font-size: 15px;
+    background: #cecccc;
+}
+#search:focus{
+    outline: none;
+}
+.search-icon{
+    margin: 10px;
+    color:rgba(0, 0, 0, 0.564);
+}
+.messages {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: white;
+  width: 100%;
+  height: 40px;
+  color: #b3b0b0;
+}
+.icon-button {
+    position: relative;
+    align-items: center;
+    width: 80%;
+    height: 40px;
+    color: #000;
+  }
+  
+  .icon-button:hover {
+    cursor: pointer;
+  }
+  
+  .icon-button:active {
+    background: #cccccc;
+  }
+  
+  .icon-button__badge {
+    position: absolute;
+    top: -1px;
+    right: -10px;
+    width: 20px;
+    height: 20px;
+    background: red;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 150%;
+  }
+  .profile-image{
+    border-radius: 15px;
+    cursor: pointer;
+    height: 35px;
+    width: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .right-header{
+    display: flex;
+    float: right;
+    padding-left: 210px;
+  }
+  
+  .filter-button {
+    background-color:rgb(31, 30, 30);
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .nav{
+    background: #ffffffce;
+    border: none;
+    box-shadow: 2px 1px 5px 1px whitesmoke;
+    width: 18%;
+    height: 100%;
+    padding-left: 10px;
+  }
+
+  .select {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    margin: auto;
+    height: 100%;
+    border-bottom: 0px;
+    border-radius: 3px;
+    >i.toggle {
+        position: absolute;
+        z-index: 4;
+        right: 1.5em;
+        top: 1.6em;
+        color: #ccc
+    }
+    >i.toggleuse {
+        position: absolute;
+        z-index: 4;
+        top: 1.6em;
+        color: #ccc
+    }
+    .title,
+    .placeholder {
+        position: relative;
+        display: block;
+        padding: 20px 20px;
+        background: rgba(255, 255, 255, 1);
+        border-top: 1px solid rgba(0, 0, 0, .05);
+        cursor: pointer;
+    }
+    &>input {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        z-index: 1;
+        width: 130px;
+        height: 130px;
+        display: block;
+        opacity: 0;
+        cursor: pointer;
+        &:checked {
+            ~i.toggle.icon-arrow-down {
+                display: none;
+            }
+            ~i.toggle.icon-arrow-up {
+                display: block;
+            }
+            ~i.toggleuse.fa-user {
+                display: block;
+            }
+            div.options label.option .title {
+                display: none!important;
+            }
+        }
+        &:not(:checked) {
+            z-index: 4;
+            ~label.option {
+                >span.title {
+                    display: none;
+                }
+            }
+            ~i.toggle.icon-arrow-down {
+                display: block;
+            }
+            ~i.toggle.icon-arrow-up {
+                display: none;
+            }
+            ~i.toggleuse.fa-user {
+                display: block;
+            }
+        }
+       
+    }
+    &>span.placeholder {
+        position: relative;
+        z-index: 0;
+        display: inline-block;
+        width: 100%;
+        color: #999;
+        border-top: 0px;
+    }
+    label.option {
+        display: block;
+        overflow: hidden;
+        z-index: 1;
+        width: 100%;
+        transition: all 1s ease-out;
+        span.title {
+            position: relative;
+            z-index: 2;
+            transition: background .3s ease-out;
+            &:hover {
+                color: #fff;
+                background: rgba(255, 255, 255, .3);
+                box-shadow: inset 0px 1px 0px rgba(0, 0, 0, .1);
+            }
+        }
+        input {
+            display: none;
+            &:checked~span.title {
+                position: absolute;
+                display: block;
+                z-index: 3;
+                top: 0px;
+                background: #fff;
+                border-top: 0px;
+                box-shadow: none;
+                color: inherit;
+                width: 100%;
+            }
+          
+        }
+    }
+} 
+
+.content{
+    padding-left: 20px;
+    height: 100%;
+    padding-top: 10px;
+    background: #ebebeb;
+}
+.card {
+    width: 230px;
+    margin: auto;
+    text-align: center;
+  }
+  
+  .title {
+    color: grey;
+    font-size: 18px;
+  }
+  
+  .name{
+    font-weight: 1000;
+    font-style: normal;
+    font-size: large;
+  }
+  button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding-bottom: 5px;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    margin-left: 20px;
+    width: 90px;
+    height: 25px;
+    font-size: 18px;
+    border-radius: 10px;
+  }
+  
+  button:hover{
+    opacity: 0.7;
+  }
+
+  hr.line {
+    border: 3px solid green;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    margin-top: 5px;
+  }
+  hr.pink-line {
+    border: 3px solid #de2157;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    margin-top: 5px;
+  }
+  hr.blue-line {
+    border: 3px solid rgb(53, 190, 231);;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    margin-top: 5px;
+  }
+  hr.org-line {
+    border: 3px solid rgb(235, 178, 125);;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    margin-top: 5px;
+  }
+  .content-card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    background:#ffffff;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 20px;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 15px;
+    padding: 3px 10px 5px 0px;
+
+  }
+  .status{
+    background: rgb(53, 190, 231);
+    border-radius: 50%;
+    height: 15px;
+    width: 15px;
+    display: flex;
+    float: left;
+    margin-top: 5px;
+    margin-right: 3px;
+    margin-left: 8px;
+  }
+  .pink-status{
+    background:#de2157;
+    border-radius: 50%;
+    height: 15px;
+    width: 15px;
+    display: flex;
+    float: left;
+    margin-top: 5px;
+    margin-right: 3px;
+    margin-left: 8px;
+  }
+  .org-button{
+    background: orange;
+    font-size: 14px;
+    font-weight: 1000;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+  }
+  .pink-button{
+    background: #de2157;
+    font-size: 14px;
+    font-weight: 1000;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+  }
+  .green-button{
+    background: rgb(26, 158, 22);
+    font-size: 14px;
+    font-weight: 1000;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+  }
+  .grey-button{
+    background: rgba(202, 195, 195, 0.767);
+    font-size: 14px;
+    font-weight: 1000;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+  }
+.container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 1000px;
+    margin-left: 5px;
+}
+
+.material-symbols-outlined {
+    padding-top: 5px;
+}
+
+#a1,#a2,#a3,#a4{
+  margin-right: 30px;
+}
+#a1{
+  margin-left: 15px;
+}
+#a4{
+  margin-left: 10px;
+}
+
+.add-card{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background:#ffffff;
+  width: 200px;
+  height: 100px;
+  border: 2px solid green;
+  border-radius: 20px;
+  margin: auto;
+  text-align: center;
+  padding: 3px 10px 5px 0px;
 }

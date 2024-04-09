@@ -1,51 +1,546 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Healthtrack</title>
-        <link rel="stylesheet" type="text/css"  href="./style.css"/>
-        
-    </head>
-    <body>
-        <div class="h">
-            <h2>Healthtrack</h2>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Track</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<body>
+    <div>
+        <div class="header">
+            <button class="plus-button"><span class="plus-symbol">+</span></button>
+            <p class="title">Healthtrack</p>
+            <button class="filter-button" style="font-size:24px; margin-top: 1px; margin-left: 80px;"><span class="material-symbols-outlined">filter_list</span></button>
+            <div class="search-wrapper">
+              <i class="search-icon fas fa-search"></i>             
+              <input type="text" id="search" placeholder="Search Patient">
+            </div>
+            <i class="fa fa-clock-o" style="font-size:24px; margin-top: 10px; margin-left: 20px;"></i>
+            <div style="margin-top: 10px; margin-left: 5px;">13:29 AM  Today July 25,2019</div> 
+            <div class="right-header">
+                <p class="icon-button">
+                    <span class="material-symbols-outlined" style="margin-left: 10px;">notifications</span>
+                    <span class="icon-button__badge">2</span>
+                </p>    
+                <p class="icon-button">
+                    <span class="material-symbols-outlined">mail</span>
+                    <span class="icon-button__badge">2</span>
+                </p>    
+                <button>
+                    <img src="data:image/jpeg;base64,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" class="profile-image">
+                </button> 
+            </div>
         </div>
-        
-        <p>Messages</p>
-        <p>
-            <select name="Patients" id="Patients">
-            <option value="">Patients</option>
-            <option value="Patient list">Patient list</option>
-            <option value="Add patient">Add patient</option>
-            <option value="Old patient">Old patient</option>
-            <option value="Reports">Reports</option>
-        </select>
-        </p>
+        <div class="top-row">
+            <div class="nav">
+                <p class="messages animated zoomIn" >
+                    <span class="material-symbols-outlined" style="padding-bottom: 5px; padding-right: 3px;">mail</span>
+                     Messages
+                </p>  
+                <div class="select animated zoomIn">
+                    <input type="radio" name="option">
+                    <i class="toggle icon icon-arrow-down"></i>
+                    <i class="toggle icon icon-arrow-up"></i>
+                    <i class="toggleuse fas fa-user" style="padding-right: 3px;"></i>
+                    <span class="placeholder">Patients</span>
+                    <label class="option">
+                        <input type="radio" name="option">
+                        <span class="title animated fadeIn">Patient List</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="option">
+                        <span class="title animated fadeIn">Add Patient</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="option">
+                        <span class="title animated fadeIn">Old Patients</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="option">
+                        <span class="title animated fadeIn">Reports</span>
+                    </label>
+                </div>
 
-        <p>
-            <lable for="date">Calender</lable>
-            <input type="Date" name="date" id="date">
-        </p>
+                <!--calender-->
+                <div class="select animated zoomIn">
+                    <input type="radio" name="option">
+                    <i class="toggle icon icon-arrow-down"></i>
+                    <i class="toggle icon icon-arrow-up"></i>
+                    <i class="toggleuse fas fa-calendar" style="padding-right: 3px;"></i>
+                    <span class="placeholder">Calender</span>
+                    <label class="option">
+                        <input type="radio" name="option">
+                        <span class="title animated fadeIn">Patient List</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="option">
+                        <span class="title animated fadeIn">Add Patient</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="option">
+                        <span class="title animated fadeIn">Old Patients</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="option">
+                        <span class="title animated fadeIn">Reports</span>
+                    </label>
+                </div>
 
-        <p>
-            <select name="st" id="st">
-                <option value="">staff</option>
-                <option value="staff list">staff list</option>
-                <option value="About staff">About staff</option>
-                <option value="staff info">Staff info</option>
-            </select>
-        </p>
-     
-        <p>
-            <select name="set" id="set">
-                <option value="">Settings</option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-            </select>
-        </p>
-        
-    </body>
+                <!--Staff-->
+                <div class="select animated zoomIn">
+                    <input type="radio" name="option">
+                    <i class="toggle icon icon-arrow-down"></i>
+                    <i class="toggle icon icon-arrow-up"></i>
+                    <i class="toggleuse fas fa-users" style="padding-right: 3px;"></i>
+                    <span class="placeholder">Staff</span>
+                    <label class="option">
+                        <input type="radio" name="option">
+                        <span class="title animated fadeIn">Patient List</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="option">
+                        <span class="title animated fadeIn">Add Patient</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="option">
+                        <span class="title animated fadeIn">Old Patients</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="option">
+                        <span class="title animated fadeIn">Reports</span>
+                    </label>
+                </div>
+
+                <!--Settings-->
+                <div class="select animated zoomIn">
+                    <input type="radio" name="option">
+                    <i class="toggle icon icon-arrow-down"></i>
+                    <i class="toggle icon icon-arrow-up"></i>
+                    <i class="toggleuse fas fa-cog" style="padding-right: 3px;"></i>
+                    <span class="placeholder">Settings</span>
+                    <label class="option">
+                        <input type="radio" name="option">
+                        <span class="title animated fadeIn">Patient List</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="option">
+                        <span class="title animated fadeIn">Add Patient</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="option">
+                        <span class="title animated fadeIn">Old Patients</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="option">
+                        <span class="title animated fadeIn">Reports</span>
+                    </label>
+                </div>
+
+                <!--Help-->
+                <div class="select animated zoomIn">
+                    <input type="radio" name="option">
+                    <i class="toggle icon icon-arrow-down"></i>
+                    <i class="toggle icon icon-arrow-up"></i>
+                    <i class="toggleuse fas fa-question-circle" style="padding-right: 3px;"></i>
+                    <span class="placeholder">Help</span>
+                    <label class="option">
+                        <input type="radio" name="option">
+                        <span class="title animated fadeIn">Patient List</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="option">
+                        <span class="title animated fadeIn">Add Patient</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="option">
+                        <span class="title animated fadeIn">Old Patients</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="option">
+                        <span class="title animated fadeIn">Reports</span>
+                    </label>
+                </div>
+
+                <!--Report-->
+                <div class="select animated zoomIn">
+                    <input type="radio" name="option">
+                    <i class="toggle icon icon-arrow-down"></i>
+                    <i class="toggle icon icon-arrow-up"></i>
+                    <i class="toggleuse fas fa-file-alt" style="padding-right: 3px;"></i>
+                    <span class="placeholder">Report</span>
+                    <label class="option">
+                        <input type="radio" name="option">
+                        <span class="title animated fadeIn">Patient List</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="option">
+                        <span class="title animated fadeIn">Add Patient</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="option">
+                        <span class="title animated fadeIn">Old Patients</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="option">
+                        <span class="title animated fadeIn">Reports</span>
+                    </label>
+                </div>
+            </div>
+            <div class="content">
+                 <div class="row">
+                    <!--Waiting room-->
+                    <div class="card" id="a1">
+                        <p><strong>Waiting room</strong>(4 patients) <i class="fa fa-caret-down" style="background: black; color: white;border-radius: 50%;height: 20px;width: 20px;"></i></p>
+                        <hr class="pink-line">  
+                        <div class="content-card">
+                          <div class="container">
+                              <p class="name">Maxine E.Byrd</p>
+                              <span class="material-symbols-outlined"> more_vert </span>
+                          </div>
+      
+                          <div class="row1">
+                              <div class="status"></div>
+                               Procedure
+                          </div>
+                          <div class="row1">
+                              <div class="row1" >
+                                  <p style="font-weight: bolder;">Arrived:</p>
+                                  <p>10:20 AM</p>
+                              </div>
+                              <div class="row1" style="padding-left: 2px;">
+                                  <p style="font-weight: bolder;">Age:</p>
+                                  <p>23 yrs</p>
+                              </div>
+                             
+                          </div>
+                          <button class="org-button">Procedure</button>
+                        </div>
+ 
+                        <div class="content-card">
+                          <div class="container">
+                              <p class="name">Tamara M.Newbill</p>
+                              <span class="material-symbols-outlined"> more_vert </span>
+                          </div>
+      
+                          <div class="row1">
+                              <div class="status"></div>
+                               Procedure
+                          </div>
+                          <div class="row1">
+                              <div class="row1" >
+                                  <p style="font-weight: bolder;">Arrived:</p>
+                                  <p>10:20 AM</p>
+                              </div>
+                              <div class="row1" style="padding-left: 2px;">
+                                  <p style="font-weight: bolder;">Age:</p>
+                                  <p>23 yrs</p>
+                              </div>
+                             
+                          </div>
+                          <button class="green-button">Procedure</button>
+                        </div>
+      
+                        <div class="content-card">
+                          <div class="container">
+                              <p class="name">Mandy A.Hill</p>
+                              <span class="material-symbols-outlined"> more_vert </span>
+                          </div>
+      
+                          <div class="row1">
+                              <div class="pink-status"></div>
+                               US
+                          </div>
+                          <div class="row1">
+                              <div class="row1" >
+                                  <p style="font-weight: bolder;">Arrived:</p>
+                                  <p>10:20 AM</p>
+                              </div>
+                              <div class="row1" style="padding-left: 2px;">
+                                  <p style="font-weight: bolder;">Age:</p>
+                                  <p>23 yrs</p>
+                              </div>
+                             
+                          </div>
+                          <button class="grey-button">Procedure</button>
+                        </div>
+                        <div class="add-card">
+                        <form action="#" class="f">
+                            <span class="material-symbols-outlined">
+                                person_add
+                                </span>
+                            <p>Add patient</p>                                   
+                        </form>
+                        </div>
+                    </div>
+                    
+                    <!--MAMM-->
+                    <div class="card" id="a2" style="background: white; border-radius: 15px;">
+                        <p> <strong>MAMM</strong>(4 patients) <i class="fa fa-caret-down" style="background: black; color: white;border-radius: 50%;height: 20px;width: 20px;"></i></p>
+                        <hr class="blue-line"> 
+                        
+                        <div class="content-card">
+                          <div class="container">
+                              <p class="name">Maxine E.Byrd</p>
+                              <span class="material-symbols-outlined"> more_vert </span>
+                          </div>
+      
+                          <div class="row1">
+                              <div class="status"></div>
+                               Procedure
+                          </div>
+                          <div class="row1">
+                              <div class="row1" >
+                                  <p style="font-weight: bolder;">Arrived:</p>
+                                  <p>10:20 AM</p>
+                              </div>
+                              <div class="row1" style="padding-left: 2px;">
+                                  <p style="font-weight: bolder;">Age:</p>
+                                  <p>23 yrs</p>
+                              </div>
+                             
+                          </div>
+                          <button class="org-button">Procedure</button>
+                        </div>
+      
+                        <div class="content-card" style="background: rgb(192, 191, 191);">
+                          <div class="container">
+                              <p class="name">Donna E.Heinemann</p>
+                              <span class="material-symbols-outlined"> more_vert </span>
+                          </div>
+      
+                          <div class="row1">
+                              <div class="status"></div>
+                               Procedure
+                          </div>
+                          <div class="row1">
+                              <div class="row1" >
+                                  <p style="font-weight: bolder;">Arrived:</p>
+                                  <p>10:20 AM</p>
+                              </div>
+                              <div class="row1" style="margin-left: 2px;">
+                                  <p style="font-weight: bolder;">Age:</p>
+                                  <p>23 yrs</p>
+                              </div>
+                             
+                          </div>
+                          <button class="green-button">Procedure</button>
+                        </div>
+      
+                        <div class="content-card">
+                          <div class="container">
+                              <p class="name">Annette T.Osteowski</p>
+                              <span class="material-symbols-outlined"> more_vert </span>
+                          </div>
+      
+                          <div class="row1">
+                              <div class="pink-status"></div>
+                               US
+                          </div>
+                          <div class="row1">
+                              <div class="row1" >
+                                  <p style="font-weight: bolder;">Arrived:</p>
+                                  <p>10:20 AM</p>
+                              </div>
+                              <div class="row1" style="padding-left: 2px;">
+                                  <p style="font-weight: bolder;">Age:</p>
+                                  <p>23 yrs</p>
+                              </div>
+                             
+                          </div>
+                          <button class="pink-button">Procedure</button>
+                        </div>
+                        <div class="add-card" style="background: rgb(206, 243, 206);">
+                            <form action="#" class="f">
+                                <span class="material-symbols-outlined">
+                                    person_add
+                                    </span>
+                                <p>Add patient</p>                                   
+                            </form>
+                        </div>
+
+                    </div>
+      
+                    <!--US-->
+                    <div class="card" id="a3">
+                        <p><strong>US</strong> (4 patients) <i class="fa fa-caret-down" style="background: black; color: white;border-radius: 50%;height: 20px;width: 20px;"></i></p>
+                        <hr class="line"> 
+                        
+                        <div class="content-card">
+                          <div class="container">
+                              <p class="name">Rita T.Morris</p>
+                              <span class="material-symbols-outlined"> more_vert </span>
+                          </div>
+      
+                          <div class="row1">
+                              <div class="status"></div>
+                               Procedure
+                          </div>
+                          <div class="row1">
+                              <div class="row1" >
+                                  <p style="font-weight: bolder;">Arrived:</p>
+                                  <p>10:20 AM</p>
+                              </div>
+                              <div class="row1" style="padding-left: 2px;">
+                                  <p style="font-weight: bolder;">Age:</p>
+                                  <p>23 yrs</p>
+                              </div>
+                             
+                          </div>
+                          <button class="org-button">Procedure</button>
+                        </div>
+      
+                        <div class="content-card">
+                          <div class="container">
+                              <p class="name">Jeanette J.Willie</p>
+                              <span class="material-symbols-outlined"> more_vert </span>
+                          </div>
+      
+                          <div class="row1">
+                              <div class="status"></div>
+                               Procedure
+                          </div>
+                          <div class="row1">
+                              <div class="row1" >
+                                  <p style="font-weight: bolder;">Arrived:</p>
+                                  <p>10:20 AM</p>
+                              </div>
+                              <div class="row1" style="padding-left: 2px;">
+                                  <p style="font-weight: bolder;">Age:</p>
+                                  <p>23 yrs</p>
+                              </div>
+                             
+                          </div>
+                          <button class="pink-button">Procedure</button>
+                        </div>
+      
+                        <div class="content-card">
+                          <div class="container">
+                              <p class="name">Mandy A.Hill</p>
+                              <span class="material-symbols-outlined"> more_vert </span>
+                          </div>
+      
+                          <div class="row1">
+                              <div class="pink-status"></div>
+                               US
+                          </div>
+                          <div class="row1">
+                              <div class="row1" >
+                                  <p style="font-weight: bolder;">Arrived:</p>
+                                  <p>10:20 AM</p>
+                              </div>
+                              <div class="row1" style="padding-left: 2px;">
+                                  <p style="font-weight: bolder;">Age:</p>
+                                  <p>23 yrs</p>
+                              </div>
+                             
+                          </div>
+                          <button class="grey-button">Procedure</button>
+                        </div>
+                        <div class="add-card">
+                            <form action="#" class="f">
+                                <span class="material-symbols-outlined">
+                                    person_add
+                                    </span>
+                                <p>Add patient</p>                                   
+                            </form>
+                            </div>
+                    </div>
+           
+                    <!--Procedure-->
+                    <div class="card" id="a4">
+                        <p><strong>Procedure</strong> (4 patients) <i class="fa fa-caret-down" style="background: black; color: white;border-radius: 50%;height: 20px;width: 20px;"></i></p>
+                        <hr class="org-line"> 
+                        
+                        <div class="content-card">
+                          <div class="container">
+                              <p class="name">Maxine E.Byrd</p>
+                              <span class="material-symbols-outlined"> more_vert </span>
+                          </div>
+      
+                          <div class="row1">
+                              <div class="pink-status"></div>
+                               US
+                          </div>
+                          <div class="row1">
+                              <div class="row1" >
+                                  <p style="font-weight: bolder;">Arrived:</p>
+                                  <p>10:20 AM</p>
+                              </div>
+                              <div class="row1" style="padding-left: 2px;">
+                                  <p style="font-weight: bolder;">Age:</p>
+                                  <p>23 yrs</p>
+                              </div>
+                             
+                          </div>
+                          <button class="green-button">Procedure</button>
+                        </div>
+      
+                        <div class="content-card">
+                          <div class="container">
+                              <p class="name">Leo T.Mulligan</p>
+                              <span class="material-symbols-outlined"> more_vert </span>
+                          </div>
+      
+                          <div class="row1">
+                              <div class="status"></div>
+                               Procedure
+                          </div>
+                          <div class="row1">
+                              <div class="row1" >
+                                  <p style="font-weight: bolder;">Arrived:</p>
+                                  <p>10:20 AM</p>
+                              </div>
+                              <div class="row1" style="padding-left: 2px;">
+                                  <p style="font-weight: bolder;">Age:</p>
+                                  <p>23 yrs</p>
+                              </div>
+                             
+                          </div>
+                          <button class="green-button">Procedure</button>
+                        </div>
+      
+                        <div class="content-card">
+                          <div class="container">
+                              <p class="name">Julie J.Cole</p>
+                              <span class="material-symbols-outlined"> more_vert </span>
+                          </div>
+      
+                          <div class="row1">
+                              <div class="status"></div>
+                               Procedure
+                          </div>
+                          <div class="row1">
+                              <div class="row1" >
+                                  <p style="font-weight: bolder;">Arrived:</p>
+                                  <p>10:20 AM</p>
+                              </div>
+                              <div class="row1" style="padding-left: 2px;">
+                                  <p style="font-weight: bolder;">Age:</p>
+                                  <p>23 yrs</p>
+                              </div>
+                             
+                          </div>
+                          <button class="grey-button">Procedure</button>
+                        </div>
+                        <div class="add-card">
+                            <form action="#" class="f">
+                                <span class="material-symbols-outlined">
+                                    person_add
+                                    </span>
+                                <p>Add patient</p>                                   
+                            </form>
+                            </div>
+
+                    </div>
+                  
+                 </div>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
